@@ -80,7 +80,8 @@ input[type="text"]:focus,input[type="password"]:focus,textarea:focus{outline:non
 .mainbody .aboutus{width:362px;height:180px;padding:36px 26px 0;float:right;background:url(../images/aboutus_bg.png) no-repeat 18px 13px #fcfcfc;line-height:24px;color:#888;border:1px solid #f4f4f4;border-bottom:2px solid #e6e6e6;border-radius:5px;}
 .mainbody .aboutus img{float:left;margin:5px 15px 0px 0;}
 .mainbody .aboutus a{color:#2554b3;}
-
+/*course*/
+.mainbody .course{width:300px;float:left;margin-top:14px;clear: both}
 .contact{background:url(../images/contact_title.png) no-repeat;padding-top:23px;color:#c6c5c5;margin:14px 0 25px 0;}
 .follow{background:url(../images/follow_title.png) no-repeat;padding-top:30px;}
 .follow a{text-indent:-99999px;overflow:hidden;float:left;}
@@ -89,7 +90,7 @@ input[type="text"]:focus,input[type="password"]:focus,textarea:focus{outline:non
 
 
 /*友情链接*/
-.weblink{width:880px;line-height:24px;padding:10px 0;margin:0 auto;padding-left:80px;background:url(../images/weblink_title.png) no-repeat 0 center;font-family:Verdana;}
+.weblink{width:880px;line-height:24px;padding:311px 0px 10px  0;margin:0 auto;padding-left:80px;background:url(../images/weblink_title.png) no-repeat 0 center;font-family:Verdana;}
 .weblink a{margin-left:20px;color:#6a6a6a;}
 .weblink a:hover{color:#F60;}
 

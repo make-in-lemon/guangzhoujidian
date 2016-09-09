@@ -22,23 +22,23 @@ $(function(){
 <?php require_once('header.php'); ?>
 <!-- /header-->
 <!-- banner-->
-<div class="banner">
-	<div id="slideplay">
-		<ul>
-			<?php
-			$dosql->Execute("SELECT * FROM `#@__infoimg` WHERE classid=13 AND delstate='' AND checkinfo=true ORDER BY orderid DESC LIMIT 0,5");
-			while($row = $dosql->GetArray())
-			{
-				if($row['linkurl'] != '')$gourl = $row['linkurl'];
-				else $gourl = 'javascript:;';
-			?>
-			<li><a href="<?php echo $gourl; ?>"><img src="<?php echo $row['picurl']; ?>" alt="<?php echo $row['title']; ?>" /></a></li>
-			<?php
-			}
-			?>
-		</ul>
-	</div>
-</div>
+<!--<div class="banner">-->
+<!--	<div id="slideplay">-->
+<!--		<ul>-->
+<!--			--><?php
+//			$dosql->Execute("SELECT * FROM `#@__infoimg` WHERE classid=13 AND delstate='' AND checkinfo=true ORDER BY orderid DESC LIMIT 0,5");
+//			while($row = $dosql->GetArray())
+//			{
+//				if($row['linkurl'] != '')$gourl = $row['linkurl'];
+//				else $gourl = 'javascript:;';
+//			?>
+<!--			<li><a href="--><?php //echo $gourl; ?><!--"><img src="--><?php //echo $row['picurl']; ?><!--" alt="--><?php //echo $row['title']; ?><!--" /></a></li>-->
+<!--			--><?php
+//			}
+//			?>
+<!--		</ul>-->
+<!--	</div>-->
+<!--</div>-->
 <!-- /banner-->
 <!-- notice-->
 <div class="notice">
@@ -52,49 +52,51 @@ $(function(){
 </div>
 <!-- /notice-->
 <!-- mainbody-->
-<div class="mainbody">
-	<!-- mainbody 1of2 2of2-->
-	<div class="OneOfTwo">
-		<!-- newslist-->
-		<div class="newwarp">
-			<div class="newstitle">
-			<?php
-			if($cfg_isreurl!='Y') $gourl = 'news.php';
-			else $gourl = 'news.html';
-			?>
-			<a href="<?php echo $gourl; ?>">更多&gt;&gt;</a></div>
-			<div class="newsfocus">
-				<?php
-				$row = $dosql->GetOne("SELECT * FROM `#@__infolist` WHERE classid=4 AND flag LIKE '%h%' AND delstate='' AND checkinfo=true ORDER BY orderid DESC");
-				if(isset($row['id']))
-				{
-					//获取链接地址
-					if($row['linkurl']=='' and $cfg_isreurl!='Y')
-						$gourl = 'newsshow.php?cid='.$row['classid'].'&id='.$row['id'];
-					else if($cfg_isreurl=='Y')
-						$gourl = 'newsshow-'.$row['classid'].'-'.$row['id'].'-1.html';
-					else
-						$gourl = $row['linkurl'];
 
-					//获取缩略图地址
-					if($row['picurl']!='')
-						$picurl = $row['picurl'];
-					else
-						$picurl = 'templates/default/images/nofoundpic.gif';
-				?>
-				<div><a href="<?php echo $gourl; ?>"><img src="<?php echo $picurl; ?>" /></a></div>
-				<h3><a href="<?php echo $gourl; ?>" style="color:<?php echo $row['colorval']; ?>;font-weight:<?php echo $row['boldval']; ?>;"><?php echo ReStrLen($row['title'],16); ?></a></h3>
-				<p><?php echo ReStrLen($row['description'],34); ?></p>
-				<?php
-				}
-				else
-				{
-					echo '网站资料更新中...';
-				}
-				?>
-			</div>
-			<ul class="newslist">
-				<?php $dosql->Execute("SELECT * FROM `#@__infolist` WHERE (classid=4 or parentid=4) AND delstate='' AND checkinfo=true ORDER BY orderid DESC LIMIT 0,3");
+	<!-- mainbody 1of2 2of2-->
+
+<!--    	<div class="newstitle">-->
+<!--			--><?php
+//			if($cfg_isreurl!='Y') $gourl = 'news.php';
+//			else $gourl = 'news.html';
+//			?>
+<!--			<a href="--><?php //echo $gourl; ?><!--">更多&gt;&gt;</a></div>-->
+<!--			<div class="newsfocus">-->
+<!--				--><?php
+//				$row = $dosql->GetOne("SELECT * FROM `#@__infolist` WHERE classid=4 AND flag LIKE '%h%' AND delstate='' AND checkinfo=true ORDER BY orderid DESC");
+//				if(isset($row['id']))
+//				{
+//					//获取链接地址
+//					if($row['linkurl']=='' and $cfg_isreurl!='Y')
+//						$gourl = 'newsshow.php?cid='.$row['classid'].'&id='.$row['id'];
+//					else if($cfg_isreurl=='Y')
+//						$gourl = 'newsshow-'.$row['classid'].'-'.$row['id'].'-1.html';
+//					else
+//						$gourl = $row['linkurl'];
+//
+//					//获取缩略图地址
+//					if($row['picurl']!='')
+//						$picurl = $row['picurl'];
+//					else
+//						$picurl = 'templates/default/images/nofoundpic.gif';
+//				?>
+<!--				<div><a href="--><?php //echo $gourl; ?><!--"><img src="--><?php //echo $picurl; ?><!--" /></a></div>-->
+<!--				<h3><a href="--><?php //echo $gourl; ?><!--" style="color:--><?php //echo $row['colorval']; ?<?php //echo $row['boldval']; ?><?php //echo ReStrLen($row['title'],16); ?><!--</a></h3>-->
+<!--				<p>--><?php //echo ReStrLen($row['description'],34); ?><!--</p>-->
+<!--				--><?php
+//				}
+//				else
+//				{
+//					echo '网站资料更新中...';
+//				}
+//				?>
+
+
+	<div class="am-g am-g-fixed">
+					<!-- newslist-->
+		<div class="am-u-lg-3">
+			<ul>
+				<?php $dosql->Execute("SELECT * FROM `#@__infolist` WHERE (classid=19 or parentid=4) AND delstate='' AND checkinfo=true ORDER BY orderid DESC LIMIT 0,3");
 				while($row = $dosql->GetArray())
 				{
 					//获取链接地址
@@ -104,84 +106,153 @@ $(function(){
 						$gourl = 'newsshow-'.$row['classid'].'-'.$row['id'].'-1.html';
 					else
 						$gourl = $row['linkurl'];
-				?>
-				<li><span><?php echo MyDate('m-d', $row['posttime']); ?></span>· <a href="<?php echo $gourl; ?>" style="color:<?php echo $row['colorval']; ?>;font-weight:<?php echo $row['boldval']; ?>;"><?php echo ReStrLen($row['title'],19); ?></a></li>
-				<?php
+					?>
+					<li><span><?php echo MyDate('m-d', $row['posttime']); ?></span>· <a href="<?php echo $gourl; ?>" style="color:<?php echo $row['colorval']; ?>;font-weight:<?php echo $row['boldval']; ?>;"><?php echo ReStrLen($row['title'],19); ?></a></li>
+					<?php
 				}
 				?>
 			</ul>
+		<div class="contact"><?php echo Info(10); ?></div>
 		</div>
 		<!-- /newslist-->
 		<!-- aboutus-->
-		<div class="aboutus"><img src="<?php echo InfoPic(3); ?>" width="154" height="83" />
-		<?php
-		if($cfg_isreurl!='Y') $gourl = 'about.php';
-		else $gourl = 'about.html';
-		echo Info(3,147,$gourl);
-		?>
+		<div class="am-u-lg-7">
+
+			<div  data-am-widget="slider" class="am-slider am-slider-default" data-am-slider='{&quot;animation&quot;:&quot;slide&quot;,&quot;slideshow&quot;:false}' >
+				<ul class="am-slides">
+					<?php
+								$dosql->Execute("SELECT * FROM `#@__infoimg` WHERE classid=13 AND delstate='' AND checkinfo=true ORDER BY orderid DESC LIMIT 0,5");
+								while($row = $dosql->GetArray())
+								{
+									if($row['linkurl'] != '')$gourl = $row['linkurl'];
+									else $gourl = 'javascript:;';
+								?>
+								<li><a href="<?php echo $gourl; ?>"><img src="<?php echo $row['picurl']; ?>" alt="<?php echo $row['title']; ?>" /></a>
+								<div class="am-slider-desc"><?php echo $row['title']; ?></div>
+								</li>
+								<?php
+								}
+								?>
+				</ul>
+			</div>
 		</div>
+		<div class="am-u-lg-2"><img src="<?php echo InfoPic(3); ?>" width="154" height="83" />
+			<?php
+			if($cfg_isreurl!='Y') $gourl = 'about.php';
+			else $gourl = 'about.html';
+			echo Info(3,35,$gourl);
+			?>
+		</div>
+	</div>
 		<!-- /aboutus-->
-		<div class="cl"></div>
-	</div>
-	<div class="TowOfTow">
-		<div class="contact"> <?php echo Info(10); ?> </div>
+<!--		<div class="cl"></div>-->
+<!--	</div>-->
+<!--	<div class="TowOfTow">-->
+<!--		<div class="contact"> --><?php //echo Info(10); ?><!-- </div>-->
 <!--		<div class="follow"><a href="http://weibo.com/phpMyWind" class="sina" target="_blank">收听新浪微博</a><a href="http://t.qq.com/phpMyWind" class="tqq" target="_blank">收听腾讯微博</a></div>-->
-	</div>
-	<div class="cl"></div>
+<!--	</div>-->
+<!--	<div class="cl"></div>-->
 	<!-- /mainbody 1of2 2of2-->
 	<!-- product-->
-	<div class="scrollimg">
-		<div class="imgwrap">
-			<ul>
-				<?php
-				$dosql->Execute("SELECT * FROM `#@__infoimg` WHERE (classid=5 OR parentstr LIKE '%,5,%') AND delstate='' AND checkinfo=true ORDER BY orderid DESC LIMIT 0,18");
-				while($row = $dosql->GetArray())
-				{
-					//获取链接地址
-					if($row['linkurl']=='' and $cfg_isreurl!='Y')
-						$gourl = 'productshow.php?cid='.$row['classid'].'&id='.$row['id'];
-					else if($cfg_isreurl=='Y')
-						$gourl = 'productshow-'.$row['classid'].'-'.$row['id'].'-1.html';
-					else
-						$gourl = $row['linkurl'];
-
-					//获取缩略图地址
-					if($row['picurl']!='')
-						$picurl = $row['picurl'];
-					else
-						$picurl = 'templates/default/images/nofoundpic.gif';
-				?>
-				<li>
-					<dl>
-						<dt><a href="<?php echo $gourl; ?>"><img src="<?php echo $picurl; ?>" title="<?php echo $row['title']; ?>" /></a></dt>
-						<dd><a href="<?php echo $gourl; ?>"><?php echo $row['title']; ?></a><?php echo $row['keywords']; ?></dd>
-					</dl>
-				</li>
-				<?php
-				}
-				?>
-			</ul>
-		</div>
-	</div>
-
-	<ul class="newslist">
-		<?php $dosql->Execute("SELECT * FROM `#@__infolist` WHERE (classid=14 or parentid=4) AND delstate='' AND checkinfo=true ORDER BY orderid DESC LIMIT 0,3");
-		while($row = $dosql->GetArray())
-		{
-			//获取链接地址
-			if($row['linkurl']=='' and $cfg_isreurl!='Y')
-				$gourl = 'newsshow.php?cid='.$row['classid'].'&id='.$row['id'];
-			else if($cfg_isreurl=='Y')
-				$gourl = 'newsshow-'.$row['classid'].'-'.$row['id'].'-1.html';
-			else
-				$gourl = $row['linkurl'];
-			?>
-			<li><span><?php echo MyDate('m-d', $row['posttime']); ?></span>· <a href="<?php echo $gourl; ?>" style="color:<?php echo $row['colorval']; ?>;font-weight:<?php echo $row['boldval']; ?>;"><?php echo ReStrLen($row['title'],19); ?></a></li>
-			<?php
-		}
-		?>
-	</ul>
+<!--	<div class="scrollimg">-->
+<!--		<div class="imgwrap">-->
+<!--			<ul>-->
+<!--				--><?php
+//				$dosql->Execute("SELECT * FROM `#@__infoimg` WHERE (classid=5 OR parentstr LIKE '%,5,%') AND delstate='' AND checkinfo=true ORDER BY orderid DESC LIMIT 0,18");
+//				while($row = $dosql->GetArray())
+//				{
+//					//获取链接地址
+//					if($row['linkurl']=='' and $cfg_isreurl!='Y')
+//						$gourl = 'productshow.php?cid='.$row['classid'].'&id='.$row['id'];
+//					else if($cfg_isreurl=='Y')
+//						$gourl = 'productshow-'.$row['classid'].'-'.$row['id'].'-1.html';
+//					else
+//						$gourl = $row['linkurl'];
+//
+//					//获取缩略图地址
+//					if($row['picurl']!='')
+//						$picurl = $row['picurl'];
+//					else
+//						$picurl = 'templates/default/images/nofoundpic.gif';
+//				?>
+<!--				<li>-->
+<!--					<dl>-->
+<!--						<dt><a href="--><?php //echo $gourl; ?><!--"><img src="--><?php //echo $picurl; ?><!--" title="--><?php //echo $row['title']; ?><!--" /></a></dt>-->
+<!--						<dd><a href="--><?php //echo $gourl; ?><!--">--><?php //echo $row['title']; ?><!--</a>--><?php //echo $row['keywords']; ?><!--</dd>-->
+<!--					</dl>-->
+<!--				</li>-->
+<!--				--><?php
+//				}
+//				?>
+<!--			</ul>-->
+<!--		</div>-->
+<!--	</div>-->
 	<!-- /product-->
+
+
+<div class="am-g am-g-fixed">
+	<!--course-->
+	<div class="am-u-lg-4">
+		<h3>培训课程</h3>
+		<ul class="newslist">
+			<?php $dosql->Execute("SELECT * FROM `#@__infolist` WHERE (classid=14 or parentid=4) AND delstate='' AND checkinfo=true ORDER BY orderid DESC LIMIT 0,3");
+			while($row = $dosql->GetArray())
+			{
+				//获取链接地址
+				if($row['linkurl']=='' and $cfg_isreurl!='Y')
+					$gourl = 'courseshow.php?cid='.$row['classid'].'&id='.$row['id'];
+				else if($cfg_isreurl=='Y')
+					$gourl = 'course-'.$row['classid'].'-'.$row['id'].'-1.html';
+				else
+					$gourl = $row['linkurl'];
+				?>
+				<li><span><?php echo MyDate('m-d', $row['posttime']); ?></span>· <a href="<?php echo $gourl; ?>" style="color:<?php echo $row['colorval']; ?>;font-weight:<?php echo $row['boldval']; ?>;"><?php echo ReStrLen($row['title'],19); ?></a></li>
+				<?php
+			}
+			?>
+		</ul>
+	</div>
+	<!--/couree-->
+	<div class="am-u-lg-4">
+		<h3>培训课程</h3>
+		<ul class="newslist">
+			<?php $dosql->Execute("SELECT * FROM `#@__infolist` WHERE (classid=14 or parentid=4) AND delstate='' AND checkinfo=true ORDER BY orderid DESC LIMIT 0,3");
+			while($row = $dosql->GetArray())
+			{
+				//获取链接地址
+				if($row['linkurl']=='' and $cfg_isreurl!='Y')
+					$gourl = 'courseshow.php?cid='.$row['classid'].'&id='.$row['id'];
+				else if($cfg_isreurl=='Y')
+					$gourl = 'course-'.$row['classid'].'-'.$row['id'].'-1.html';
+				else
+					$gourl = $row['linkurl'];
+				?>
+				<li><span><?php echo MyDate('m-d', $row['posttime']); ?></span>· <a href="<?php echo $gourl; ?>" style="color:<?php echo $row['colorval']; ?>;font-weight:<?php echo $row['boldval']; ?>;"><?php echo ReStrLen($row['title'],19); ?></a></li>
+				<?php
+			}
+			?>
+		</ul>
+	</div>
+	<div class="am-u-lg-4">
+		<h3>培训课程</h3>
+		<ul class="newslist">
+			<?php $dosql->Execute("SELECT * FROM `#@__infolist` WHERE (classid=14 or parentid=4) AND delstate='' AND checkinfo=true ORDER BY orderid DESC LIMIT 0,3");
+			while($row = $dosql->GetArray())
+			{
+				//获取链接地址
+				if($row['linkurl']=='' and $cfg_isreurl!='Y')
+					$gourl = 'courseshow.php?cid='.$row['classid'].'&id='.$row['id'];
+				else if($cfg_isreurl=='Y')
+					$gourl = 'course-'.$row['classid'].'-'.$row['id'].'-1.html';
+				else
+					$gourl = $row['linkurl'];
+				?>
+				<li><span><?php echo MyDate('m-d', $row['posttime']); ?></span>· <a href="<?php echo $gourl; ?>" style="color:<?php echo $row['colorval']; ?>;font-weight:<?php echo $row['boldval']; ?>;"><?php echo ReStrLen($row['title'],19); ?></a></li>
+				<?php
+			}
+			?>
+		</ul>
+	</div>
 </div>
 <!-- /mainbody-->
 <?php require_once('footer.php'); ?>
