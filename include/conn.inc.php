@@ -13,13 +13,13 @@ $db_host = 'localhost';
 $db_user = 'root';
 
 //数据库密码
-$db_pwd = '';
+$db_pwd = '123456';
 
 //数据库名
-$db_name = 'banking';
+$db_name = 'test2';
 
 //数据表前缀
-$db_tablepre = 'GRG';
+$db_tablepre = 'grg';
 
 //数据表编码
 $db_charset = 'utf8';

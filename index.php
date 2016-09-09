@@ -125,7 +125,7 @@ $(function(){
 	</div>
 	<div class="TowOfTow">
 		<div class="contact"> <?php echo Info(10); ?> </div>
-		<div class="follow"><a href="http://weibo.com/phpMyWind" class="sina" target="_blank">收听新浪微博</a><a href="http://t.qq.com/phpMyWind" class="tqq" target="_blank">收听腾讯微博</a></div>
+<!--		<div class="follow"><a href="http://weibo.com/phpMyWind" class="sina" target="_blank">收听新浪微博</a><a href="http://t.qq.com/phpMyWind" class="tqq" target="_blank">收听腾讯微博</a></div>-->
 	</div>
 	<div class="cl"></div>
 	<!-- /mainbody 1of2 2of2-->
@@ -163,6 +163,24 @@ $(function(){
 			</ul>
 		</div>
 	</div>
+
+	<ul class="newslist">
+		<?php $dosql->Execute("SELECT * FROM `#@__infolist` WHERE (classid=14 or parentid=4) AND delstate='' AND checkinfo=true ORDER BY orderid DESC LIMIT 0,3");
+		while($row = $dosql->GetArray())
+		{
+			//获取链接地址
+			if($row['linkurl']=='' and $cfg_isreurl!='Y')
+				$gourl = 'newsshow.php?cid='.$row['classid'].'&id='.$row['id'];
+			else if($cfg_isreurl=='Y')
+				$gourl = 'newsshow-'.$row['classid'].'-'.$row['id'].'-1.html';
+			else
+				$gourl = $row['linkurl'];
+			?>
+			<li><span><?php echo MyDate('m-d', $row['posttime']); ?></span>· <a href="<?php echo $gourl; ?>" style="color:<?php echo $row['colorval']; ?>;font-weight:<?php echo $row['boldval']; ?>;"><?php echo ReStrLen($row['title'],19); ?></a></li>
+			<?php
+		}
+		?>
+	</ul>
 	<!-- /product-->
 </div>
 <!-- /mainbody-->
