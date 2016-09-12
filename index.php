@@ -95,24 +95,41 @@ $(function(){
 	<div class="am-g am-g-fixed">
 					<!-- newslist-->
 		<div class="am-u-lg-3">
-			<ul>
-				<?php $dosql->Execute("SELECT * FROM `#@__infolist` WHERE (classid=19 or parentid=4) AND delstate='' AND checkinfo=true ORDER BY orderid DESC LIMIT 0,3");
-				while($row = $dosql->GetArray())
-				{
-					//获取链接地址
-					if($row['linkurl']=='' and $cfg_isreurl!='Y')
+
+			<div data-am-widget="titlebar" class="am-list-news am-list-news-default" >
+				<!--列表标题-->
+				<div class="am-list-news-hd am-cf">
+					<!--带更多链接-->
+					<a href="news.php" class="">
+						<h2>新闻公告</h2>
+						<span class="am-list-news-more am-fr">更多 &raquo;</span>
+
+					</a>
+				</div>
+				<div class="am-list-news-bd">
+					<ul class="am-list">
+						<?php $dosql->Execute("SELECT * FROM `#@__infolist` WHERE (classid=4 or parentid=4) AND delstate='' AND checkinfo=true ORDER BY orderid DESC LIMIT 0,3");
+						while($row = $dosql->GetArray())
+						{
+						//获取链接地址
+						if($row['linkurl']=='' and $cfg_isreurl!='Y')
 						$gourl = 'newsshow.php?cid='.$row['classid'].'&id='.$row['id'];
-					else if($cfg_isreurl=='Y')
+						else if($cfg_isreurl=='Y')
 						$gourl = 'newsshow-'.$row['classid'].'-'.$row['id'].'-1.html';
-					else
+						else
 						$gourl = $row['linkurl'];
-					?>
-					<li><span><?php echo MyDate('m-d', $row['posttime']); ?></span>· <a href="<?php echo $gourl; ?>" style="color:<?php echo $row['colorval']; ?>;font-weight:<?php echo $row['boldval']; ?>;"><?php echo ReStrLen($row['title'],19); ?></a></li>
-					<?php
-				}
-				?>
-			</ul>
-		<div class="contact"><?php echo Info(10); ?></div>
+						?>
+						<li class=" am-list-item-dated"> <a href="<?php echo $gourl; ?>" style="color:<?php echo $row['colorval']; ?>;font-weight:<?php echo $row['boldval']; ?>;"><?php echo ReStrLen($row['title'],19); ?>
+								<span  class="am-list-date"><?php echo MyDate('y-m-d', $row['posttime']); ?></span>
+							</a>
+						</li>
+
+						<?php
+						}
+						?>
+					</ul>
+				</div>
+			</div>
 		</div>
 		<!-- /newslist-->
 		<!-- aboutus-->
@@ -136,7 +153,46 @@ $(function(){
 				</ul>
 			</div>
 		</div>
-		<div class="am-u-lg-2"><img src="<?php echo InfoPic(3); ?>" width="154" height="83" />
+		<div class="am-u-lg-2">
+			<div data-am-widget="list_news" class="am-list-news am-list-news-default" >
+				<!--列表标题-->
+				<div class="am-list-news-hd am-cf">
+					<!--带更多链接-->
+					<a href="###" class="">
+						<h2>成功案例</h2>
+						<span class="am-list-news-more am-fr">更多 &raquo;</span>
+					</a>
+				</div>
+
+				<div class="am-list-news-bd">
+					<ul class="am-list">
+
+
+						<!--缩略图在标题下方居右-->
+						<li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-bottom-right">
+							<div class=" am-u-sm-8 am-list-main">
+
+								<div class="am-list-item-text">
+									<img src="<?php echo InfoPic(3); ?>" width="154" height="83" />
+								</div>
+
+							</div>
+							<div class="am-list-thumb am-u-sm-4">
+								<a href="http://www.douban.com/online/11614662/" class="">
+									<img src="http://img5.douban.com/lpic/o636459.jpg" alt="我很囧，你保重....晒晒旅行中的那些囧！"/>
+								</a>
+							</div>
+						</li>
+
+
+
+
+					</ul>
+				</div>
+
+			</div>
+
+			<img src="<?php echo InfoPic(3); ?>" width="154" height="83" />
 			<?php
 			if($cfg_isreurl!='Y') $gourl = 'about.php';
 			else $gourl = 'about.html';
