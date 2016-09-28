@@ -1,9 +1,9 @@
 <?php	if(!defined('IN_PHPMYWIND')) exit('Request Error!');
 
-$cfg_webname = '广电';
+$cfg_webname = 'Salted fish';
 $cfg_weburl = 'http://127.0.0.1';
-$cfg_webpath = '/xianyu2';
-$cfg_author = '陈思良';
+$cfg_webpath = '/xianyu';
+$cfg_author = 'L';
 $cfg_generator = 'PHPMyWind CMS';
 $cfg_seotitle = '';
 $cfg_keyword = 'GRG';
@@ -58,4 +58,5 @@ $cfg_qq_appid = '';
 $cfg_qq_appkey = '';
 $cfg_weibo_appid = '';
 $cfg_weibo_appkey = '';
+$cfg_logo = '';
 ?>

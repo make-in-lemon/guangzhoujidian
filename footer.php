@@ -13,7 +13,7 @@
 </div>
 <!-- /weblink-->
 <!-- footer-->
-<div class="footer"><?php echo $cfg_copyright ?><br />网站采用 <a href="http://phpmywind.com" target="_blank">PHPMyWind</a> 核心</div>
+<div class="footer"><?php echo $cfg_copyright ?><br />网站ss采用 <a href="http://phpmywind.com" target="_blank">PHPMyWind</a> 核心</div>
 <!-- /footer-->
 <?php
 
